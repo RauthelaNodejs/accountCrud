@@ -1,0 +1,324 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the API documentation for the Account management system.",
+    "version": "1.0.0",
+    "title": "Account API"
+  },
+  "host": "localhost:5001",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Account",
+      "description": "Operations related to account management"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/account": {
+      "post": {
+        "deprecated": false,
+        "tags": [
+          "Account"
+        ],
+        "description": "Create a new account",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "User's first name",
+            "required": true,
+            "type": "string",
+            "maxLength": 100
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "description": "User's last name",
+            "required": true,
+            "type": "string",
+            "maxLength": 100
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "User's email address",
+            "required": true,
+            "type": "string",
+            "maxLength": 100
+          },
+          {
+            "name": "phone",
+            "in": "formData",
+            "description": "User's phone number",
+            "required": true,
+            "type": "string",
+            "maxLength": 16
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "User's password",
+            "required": true,
+            "type": "string",
+            "maxLength": 50
+          },
+          {
+            "name": "birthday",
+            "in": "formData",
+            "description": "User's birth date (format: yyyy-mm-dd)",
+            "required": true,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully created account"
+          },
+          "400": {
+            "description": "Invalid input or email already exists"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "get": {
+        "deprecated": false,
+        "tags": [
+          "Account"
+        ],
+        "description": "Get all accounts with optional result limitation",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit the number of results returned",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          },
+          {
+            "name": "pageNo",
+            "in": "query",
+            "description": "Limit the number of results returned",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved accounts"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/account/{id}": {
+      "get": {
+        "deprecated": false,
+        "tags": [
+          "Account"
+        ],
+        "description": "Get account details by ID",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Account ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved account"
+          },
+          "400": {
+            "description": "Invalid account ID"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "put": {
+        "deprecated": false,
+        "tags": [
+          "Account"
+        ],
+        "description": "Update account details by ID",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Account ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "User's first name",
+            "required": false,
+            "type": "string",
+            "maxLength": 100
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "description": "User's last name",
+            "required": false,
+            "type": "string",
+            "maxLength": 100
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "User's email address",
+            "required": false,
+            "type": "string",
+            "maxLength": 100
+          },
+          {
+            "name": "phone",
+            "in": "formData",
+            "description": "User's phone number",
+            "required": false,
+            "type": "string",
+            "maxLength": 16
+          },
+          {
+            "name": "birthday",
+            "in": "formData",
+            "description": "User's birth date (format: yyyy-mm-dd)",
+            "required": false,
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully updated account"
+          },
+          "400": {
+            "description": "Invalid input or account ID"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "deprecated": false,
+        "tags": [
+          "Account"
+        ],
+        "description": "Delete account by ID",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Account ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted account"
+          },
+          "400": {
+            "description": "Invalid account ID"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/account/login": {
+      "post": {
+        "deprecated": false,
+        "tags": [
+          "Account"
+        ],
+        "description": "User login",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "User's email address",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "User's password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully logged in"
+          },
+          "400": {
+            "description": "Invalid email or password"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  }
+}
